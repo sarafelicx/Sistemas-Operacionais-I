@@ -1,29 +1,21 @@
 package view;
 
-import controller.MatrizThread;
+import javax.swing.JOptionPane;
+
+import controller.SaposThread;
 
 public class Main {
 
 	public static void main(String[] args) {
 
-		int[][] matriz = new int[3][5];
+		int puloMaximo = Integer.parseInt(JOptionPane.showInputDialog("Digite o pulo máximo do sapo em metros: "));
+		int distanciaMaxima = Integer.parseInt(JOptionPane.showInputDialog("Digite a distância total da corrida em metros: "));
+				
+		for (int i = 1; i < 6; i++) {
 
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 5; j++) {
+			Thread threadSapo = new SaposThread(puloMaximo, distanciaMaxima);
+			threadSapo.start();
 
-				matriz[i][j] = (int) ((Math.random() * 10) + 1);
-				System.out.print("[" + matriz[i][j] + "] ");
-			}
-			System.out.print("\n");
-		}
-
-		System.out.println("\n");
-
-		for (int i = 0; i < 3; i++) {
-
-			Thread matrizThread = new MatrizThread(matriz, i);
-			matrizThread.start();
 		}
 	}
-
 }
