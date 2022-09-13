@@ -1,24 +1,29 @@
 package view;
 
-import controller.ThreadVetor;
+import controller.MatrizThread;
 
 public class Main {
 
 	public static void main(String[] args) {
 
-		int[] vetor = new int[1000];
-		int tamanhoVetor = vetor.length;
+		int[][] matriz = new int[3][5];
 
-		for (int i = 0; i < tamanhoVetor; i++) {
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 5; j++) {
 
-			vetor[i] = (int) ((Math.random() * 101) + 1);
+				matriz[i][j] = (int) ((Math.random() * 10) + 1);
+				System.out.print("[" + matriz[i][j] + "] ");
+			}
+			System.out.print("\n");
 		}
 
-		for (int valor = 1; valor < 3; valor++) {
+		System.out.println("\n");
 
-			Thread threadVetor = new ThreadVetor(vetor, valor);
-			threadVetor.start();
+		for (int i = 0; i < 3; i++) {
+
+			Thread matrizThread = new MatrizThread(matriz, i);
+			matrizThread.start();
 		}
-
 	}
+
 }
