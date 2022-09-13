@@ -1,17 +1,24 @@
 package view;
 
-import controller.IdThread;
+import controller.ThreadVetor;
 
 public class Main {
 
 	public static void main(String[] args) {
 
-	
-		for (int idThread = 0; idThread < 5; idThread++) {
-			
-			Thread id = new IdThread(idThread);
-			id.start();
+		int[] vetor = new int[1000];
+		int tamanhoVetor = vetor.length;
 
+		for (int i = 0; i < tamanhoVetor; i++) {
+
+			vetor[i] = (int) ((Math.random() * 101) + 1);
 		}
+
+		for (int valor = 1; valor < 3; valor++) {
+
+			Thread threadVetor = new ThreadVetor(vetor, valor);
+			threadVetor.start();
+		}
+
 	}
 }
